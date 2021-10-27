@@ -1,24 +1,44 @@
-# README
+# Ring of Hobby  
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要  
 
-Things you may want to cover:
+最近では、趣味を持たない人が多いようなので、  
+少しでも興味が出た段階で、趣味を始めるチャンスを逃さないようにできるサイトとして、  
+この内容を考えました。  
 
-* Ruby version
+## サイトテーマ  
 
-* System dependencies
+同じ趣味の人と交流できるサイト  
 
-* Configuration
+## テーマを選んだ理由
 
-* Database creation
+コロナが落ち着いてきた事により、外に出る機会が増えていき、団体で行う活動も増えると。  
+でも、始めようと思った人や引っ越しなどで知らない土地に行った人は、どこでどんな事をやっているか知らないはずです。  
+なので、情報を得られるサイトを制作しようと考えました。  
 
-* Database initialization
+## ターゲットユーザ  
 
-* How to run the test suite
+・趣味の幅を広げたい  
+・今趣味にしている物での繋がりを広げたい人  
+・新しく何かを始めたい人  
 
-* Services (job queues, cache servers, search engines, etc.)
+## 主な利用シーン  
 
-* Deployment instructions
+・他の人に意見を求める時  
+・趣味を増やしたいと思った時  
 
-* ...
+## 設計書  
+
+ER図・フロー図  
+
+## チャレンジ要素一覧  
+
+https://docs.google.com/spreadsheets/d/1PYLinhEd7vZcj7eem2MOI3jYykeCmSVPDlnIUNuXiqo/edit#gid=0  
+
+## 開発環境  
+
+・OS：Linux(CentOS)  
+・言語：HTML,CSS,JavaScript,Ruby,SQL  
+・フレームワーク：Ruby on Rails  
+・JSライブラリ：jQuery  
+・IDE：Cloud9  
