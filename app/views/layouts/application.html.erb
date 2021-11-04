@@ -17,6 +17,9 @@
       <li>
         <%= link_to "グループ一覧", groups_path %>
       </li>
+      <li>
+        <%= link_to "マイページ", current_user %>
+      </li>
     <% else %>
       <li>
         <%= link_to "新規登録", new_user_registration_path %>

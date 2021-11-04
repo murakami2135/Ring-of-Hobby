@@ -15,12 +15,13 @@
     <% else %>
       <div class="group-list">
         <ul class="group-list-table">
-          <% @group.each do |list| %>
+          <% @groups.each do |list| %>
             <% if list.user_ids.include?(current_user.id) %>
               <li class="group-list-table-each-group">
                 <%= link_to "/groups/#{list.id}" do %>
                   <%= list.name %>(<%= list.user_ids.count %>)
                   <%= link_to '編集', edit_group_path(list.id), method: :get %>
+                  <%= link_to "トーク", chat_path(list.id) %>
                 <% end %>
               </li>
             <% end %>
@@ -29,7 +30,8 @@
       </div>
     <% end %>
   </div>
-  <div class="user-page">
-    <%= link_to 'ユーザーページへ', current_user %>
-  </div>
+  <% @unparticipated_groups.each do |group| %>
+    <%= group.name%>
+  <%end%>
+  
 </div>
