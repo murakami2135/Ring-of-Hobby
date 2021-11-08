@@ -1,13 +1,7 @@
 class GroupsController < ApplicationController
-before_action :set_group, only: [:edit, :update]
 
   def index
-    @groups = current_user.groups
-    @unparticipated_groups = Group.all.select do |group|
-
-      !group.users.pluck(:id).include?(current_user.id)
-    end
-
+    @groups = Group.all
     @group_joining = GroupUser.where(user_id: current_user.id)
     @group_lists_none = "グループに参加していません。"
   end
@@ -43,6 +37,30 @@ before_action :set_group, only: [:edit, :update]
     end
   end
 
+  def destroy
+    groups = Group.find(params[:id])
+    a = groups.group_users.find_by(user_id:current_user.id)
+    if a.destroy
+      redirect_to root_path
+    else
+      render :index
+    end
+  end
+
+  def join
+    @group = Group.find_by(id: params[:id])
+    if !@group.users.include?(current_user)
+      @group.users << current_user
+      redirect_to groups_path
+    end
+  end
+
+  def participant
+    @groups = Group.all
+    @group_participant = GroupUser.where(user_id: current_user.id)
+    @group_lists_none = "グループに参加していません。"
+  end
+
   private
 
   def set_group
@@ -50,7 +68,7 @@ before_action :set_group, only: [:edit, :update]
   end
 
   def group_params
-    params.require(:group).permit(:name, user_ids: [])
+    params.require(:group).permit(:name, :overview, :image, user_ids: [])
   end
 
 end

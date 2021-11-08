@@ -1,37 +1,23 @@
-<div class="chat-group">
-  <h1>チャットグループ一覧</h1>
-  <div class="group-search">
-    <div class="group-search-form">
-      <%= form_with url: groups_path do |f| %>
-        <%= f.text_field :keyword, placeholder: "グループ検索", class: "group-search-form-input" %>
-        <%= f.submit '検索' %>
+<h1>グループ一覧</h1>
+<div class="group-new">
+  <%= link_to 'グループ作成', new_group_path %>
+</div>
+<div class="group_list">
+  <% @groups.each do |group| %>
+    <div class="group_index">
+      <%= attachment_image_tag group, :image %>
+      <%= group.name %>
+      <% if user_signed_in? %>
+        <% unless GroupUser.exists?(group_id: group.id, user_id: current_user.id) %>
+          <div class="participation">
+            <%= link_to '参　加', join_group_path(group) %>
+          </div>
+        <% else %>
+          <div class="participation">
+            <%= link_to "参加中", group_path(group.id) %>
+          </div>
+        <% end %>
       <% end %>
     </div>
-    <div class="group-new">
-      <%= link_to 'グループ作成', new_group_path %>
-    </div>
-    <% if @group_joining == [] %>
-      <%= @group_lists_none %>
-    <% else %>
-      <div class="group-list">
-        <ul class="group-list-table">
-          <% @groups.each do |list| %>
-            <% if list.user_ids.include?(current_user.id) %>
-              <li class="group-list-table-each-group">
-                <%= link_to "/groups/#{list.id}" do %>
-                  <%= list.name %>(<%= list.user_ids.count %>)
-                  <%= link_to '編集', edit_group_path(list.id), method: :get %>
-                  <%= link_to "トーク", chat_path(list.id) %>
-                <% end %>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-  <% @unparticipated_groups.each do |group| %>
-    <%= group.name%>
-  <%end%>
-  
+  <% end %>
 </div>

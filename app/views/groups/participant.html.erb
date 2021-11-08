@@ -1,0 +1,17 @@
+<% if @group_participant == [] %>
+  <%= @group_lists_none %>
+<% else %>
+  <div class="group-list">
+      <% @groups.each do |group| %>
+        <% if group.user_ids.include?(current_user.id) %>
+          <div>
+            <%= link_to "/groups/#{group.id}" do %>
+              <%= group.name %>(<%= group.user_ids.count %>)
+            <% end %>
+            <!--                                ↓ここがcurrent_user.idになってた-->
+            <%= link_to "退会する", group_path(group.id),method: :delete %>
+          </div>
+        <% end %>
+      <% end %>
+  </div>
+<% end %>
