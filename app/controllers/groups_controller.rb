@@ -6,6 +6,12 @@ class GroupsController < ApplicationController
     @group_lists_none = "グループに参加していません。"
   end
 
+  def search
+    @groups = Group.search(params[:keyword])
+    @keyword = params[:keyword]
+    render "index"
+  end
+
   def new
     @group = Group.new
     @group.users << current_user
@@ -14,7 +20,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to groups_url, notice: 'グループを作成しました。'
+      redirect_to groups_url
     else
       render :new
     end
@@ -31,7 +37,7 @@ class GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     if @group.update(group_params)
-      redirect_to groups_path, notice: 'グループを更新しました。'
+      redirect_to group_path
     else
       render :edit
     end
@@ -41,7 +47,7 @@ class GroupsController < ApplicationController
     groups = Group.find(params[:id])
     a = groups.group_users.find_by(user_id:current_user.id)
     if a.destroy
-      redirect_to root_path
+      redirect_to request.referer
     else
       render :index
     end

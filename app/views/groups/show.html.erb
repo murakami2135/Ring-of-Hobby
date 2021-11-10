@@ -1,9 +1,10 @@
 <div>
   <h1><%= @group.name %></h1>
   <div>
-    <h3>概要</h3>
     <%= @group.overview %>
   </div>
+  <%= attachment_image_tag @group, :image %>
   <%= link_to "Back", :back %>
   <%= link_to "チャット", chat_path %>
+  <%= link_to "編集", edit_group_path %>
 </div>

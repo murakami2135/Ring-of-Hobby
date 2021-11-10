@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :join
     end
   end
+  get 'group/search' => 'groups#search'
   get "group/participant" => "groups#participant"
   resources :chats, only: [:show, :create]
   resources :users, only: [:show, :edit, :update]

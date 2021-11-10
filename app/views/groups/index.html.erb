@@ -1,4 +1,8 @@
 <h1>グループ一覧</h1>
+  <%= form_with url: group_search_path, method: :get, local: true do |f| %>
+    <%= f.text_field :keyword, value: @keyword %>
+    <%= f.submit "検索" %>
+  <% end %>
 <div class="group-new">
   <%= link_to 'グループ作成', new_group_path %>
 </div>
