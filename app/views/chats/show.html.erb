@@ -1,5 +1,6 @@
-<%= form_with model: @chat do |f| %>
-    <%= f.text_field :message %>
+<%= form_with model: @chat, data: {remote: true} do |f| %>
+    <%= f.label :コメント %>
+    <%= f.text_field :message, autofocus: true, id: "text" %>
     <%= f.hidden_field :group_id %>
     <%= f.submit %>
 <% end %>

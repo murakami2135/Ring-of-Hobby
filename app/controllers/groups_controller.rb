@@ -19,8 +19,13 @@ class GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
-    if @group.save
-      redirect_to groups_url
+
+    params[:group][:user_ids].each do |guid|
+      @group.group_users.new(user_id: guid.to_i)
+    end
+
+    if @group.save!
+      redirect_to groups_url, notice: 'グループを作成しました。'
     else
       render :new
     end
@@ -44,13 +49,10 @@ class GroupsController < ApplicationController
   end
 
   def destroy
-    groups = Group.find(params[:id])
-    a = groups.group_users.find_by(user_id:current_user.id)
-    if a.destroy
-      redirect_to request.referer
-    else
-      render :index
-    end
+    @groups = Group.all
+    @group = Group.find(params[:id])
+    a = @group.group_users.find_by(user_id:current_user.id)
+    a.destroy
   end
 
   def join
@@ -74,7 +76,7 @@ class GroupsController < ApplicationController
   end
 
   def group_params
-    params.require(:group).permit(:name, :overview, :image, user_ids: [])
+    params.require(:group).permit(:name, :overview, :image)
   end
 
 end

@@ -10,6 +10,7 @@
   </head>
 
   <body>
+
     <% if user_signed_in? %>
       <li>
         <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
@@ -19,6 +20,12 @@
       </li>
       <li>
         <%= link_to "マイページ", current_user %>
+      </li>
+      <li>
+        <%= link_to "参加一覧", group_participant_path %>
+      </li>
+      <li>
+        <%= link_to "通知", user_notifications_path %>
       </li>
     <% else %>
       <li>

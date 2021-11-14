@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'group/search' => 'groups#search'
   get "group/participant" => "groups#participant"
   resources :chats, only: [:show, :create]
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :notifications, only: [:index]
+  end
 
 end

@@ -16,9 +16,14 @@ class ChatsController < ApplicationController
   end
 
   def create
-    @chats = Chat.all
+    @chats = Chat.where(group_id: params[:chat][:group_id])
     @chat = current_user.chats.new(chat_params)
     @chat.save
+
+    user_ids = @chats.includes(:user).pluck(:user_id).uniq
+    user_ids.each do |uid|
+      Notification.find_or_create_by(user_id: uid, chat_id: params[:chat][:group_id], checked: false)
+    end
   end
 
   private

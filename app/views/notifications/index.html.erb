@@ -1,0 +1,6 @@
+<h2>Notifications</h2>
+<% @notifications.each do |notification| %>
+  <%= link_to chat_path(notification.group.id) do %>
+    <%= "#{notification.group.name} De Hatsugen Ga ATTA!!!" %>
+  <% end %>
+<% end %>
