@@ -1,16 +1,19 @@
-<h1>新規作成</h1>
-
-<%= form_with model: @group, local: true do |f| %>
-  <div class="group-new-form">
-    <div class="gtoup-new-form-name">
-      <%= f.label :name, 'グループ名' %>
-      <%= f.text_field :name, class: 'form-control' %>
-      <%= f.label :overview, '概要' %>
-      <%= f.text_field :overview %>
-      <%= f.label :image, '画像' %>
-      <%= f.attachment_field :image %>
-      <%= f.collection_check_boxes :user_ids, User.all, :id, :name, include_hidden: false %>
-    </div>
+<div class="contaner">
+  <h1>新規作成</h1>
+  <div class="row ml-4">
+    <%= form_with model: @group, local: true do |f| %>
+      <table class="table" style="border:none;">
+        <tr style="border:none;">
+          <th style="border:none;"><%= f.label :name, 'グループ名' %></th><td style="border:none;"><%= f.text_field :name %></td>
+        </tr>
+        <tr style="border:none;">
+          <th style="border:none;"><%= f.label :overview, '概要' %></th><td style="border:none;"><%= f.text_field :overview %></td>
+        </tr>
+        <tr style="border:none;">
+          <th style="border:none;"><%= f.label :image, '画像' %></th><td style="border:none;"><%= f.attachment_field :image %></td>
+        </tr>
+      </table>
+      
     <%= f.submit '新規作成', class: "btn btn-primary" %>
-  </div>
 <% end %>
+  </div>

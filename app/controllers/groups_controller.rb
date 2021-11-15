@@ -20,9 +20,7 @@ class GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
 
-    params[:group][:user_ids].each do |guid|
-      @group.group_users.new(user_id: guid.to_i)
-    end
+    @group.group_users << GroupUser.new(user_id: current_user.id)
 
     if @group.save!
       redirect_to groups_url, notice: 'グループを作成しました。'
