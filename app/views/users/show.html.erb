@@ -1,18 +1,22 @@
 <div class="contaner">
-    <div class="row">
-        <div class="col-sm-12">
-            <table class="table">
-          <tr>
-            <th>名前</th><td><%= current_user.name %></td>
-          </tr>
-          <tr>
-            <th>メールアドレス</th><td><%= current_user.email %></td>
-          </tr>
+  <div class="row">
+    <div class="col-sm-5 text-right">
+      <h1>マイページ</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-sm-7">
+      <table class="table" border="2">
+        <tr>
+          <th>名前</th><td><%= current_user.name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th><td><%= current_user.email %></td>
+        </tr>
       </table>
       <%= link_to "編集", edit_user_path %>
       |
       <%= link_to "参加一覧", group_participant_path %>
-        </div>
-
     </div>
+  </div>
 </div>

@@ -1,17 +1,33 @@
-<%= form_with model: @chat, data: {remote: true} do |f| %>
-    <%= f.label :コメント %>
-    <%= f.text_field :message, autofocus: true, id: "text" %>
-    <%= f.hidden_field :group_id %>
-    <%= f.submit %>
-<% end %>
-<table>
-  <thead>
-    <tr>
-      <td>投稿者名</td>
-      <td>投稿内容</td>
-    </tr>
-  </thead>
-  <tbody id="chats">
-    <%= render 'chats/show', chats: @chats %>
-  </tbody>
-</table>
+<div class="contaner mt-5">
+  <div class="row">
+    <div class="col-sm-5 text-right">
+      <h1>チャット</h1>
+
+    </div>
+    <div class="col-sm-7 mt-3">
+      <%= form_with model: @chat, data: {remote: true} do |f| %>
+        <%= f.label :コメント %>
+        <%= f.text_field :message, autofocus: true, id: "text" %>
+        <%= f.hidden_field :group_id %>
+        <%= f.submit %>
+      <% end %>
+    </div>
+
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-sm-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>投稿者名</th>
+            <th>投稿内容</th>
+          </tr>
+        </thead>
+        <tbody id="chats">
+          <%= render 'chats/show', chats: @chats %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

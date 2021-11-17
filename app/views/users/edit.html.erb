@@ -1,8 +1,22 @@
-<h2>編集</h2>
-<%= form_with model:@user, local:true do |f| %>
-<label>名前</label>
-  <%= f.text_field :name %>
-<label>メールアドレス</label>
-  <%= f.email_field :email %>
-  <%= f.submit "変更を保存" %>
-<% end %>
+<div class="contaner">
+  <div class="row">
+    <div class="col-sm-5 text-right">
+      <h2>編集</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <%= form_with model:@user, local:true do |f| %>
+    <div class="">
+      <table class="table" border="2">
+        <tr>
+          <th>名前</th><td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th><td><%= f.email_field :email %></td>
+        </tr>
+      </table>
+      <%= f.submit "変更を保存" %>
+    <% end %>
+    </div>
+  </div>
+</div>

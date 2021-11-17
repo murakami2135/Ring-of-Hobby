@@ -16,3 +16,10 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+ .notification:after {
+  content: "●";
+  font-size: 10px;
+  position: absolute;
+  color: red;
+}

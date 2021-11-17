@@ -1,20 +1,24 @@
 <div class="contaner">
-  <h1>グループ編集</h1>
-  <div class="row ml-4">
+  <div class="row">
+    <div class="col-sm-6 text-right">
+      <h1>グループ編集</h1>
+    </div>
+  </div>
+  <div class="row justify-content-center">
     <%= form_with model:@group, local:true do |f| %>
-  <table class="table">
-    <tr>
-      <th><%= f.label :name, 'グループ名' %></th><td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :overview, '概要' %></th><td><%= f.text_field :overview %></td>
-    </tr>
-    <tr>
-      <th><%= f.label :image, '画像' %></th><td><%= f.attachment_field :image %></td>
-    </tr>
-  </table>
-  <%= f.submit '更新' %>
-<% end %>
+      <table class="table" border="2">
+        <tr>
+          <th><%= f.label :name, 'グループ名' %></th><td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :overview, '概要' %></th><td><%= f.text_field :overview %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :image, '画像' %></th><td><%= f.attachment_field :image %></td>
+        </tr>
+      </table>
+      <%= f.submit '更新' %>
+    <% end %>
   </div>
 </div>
 

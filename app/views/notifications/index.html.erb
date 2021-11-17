@@ -1,6 +1,6 @@
-<h2>Notifications</h2>
+<h2>新規通知</h2>
 <% @notifications.each do |notification| %>
   <%= link_to chat_path(notification.group.id) do %>
-    <%= "#{notification.group.name} De Hatsugen Ga ATTA!!!" %>
+    <%= "#{notification.group.name} に、新しいコメントがあります！！" %>
   <% end %>
 <% end %>
