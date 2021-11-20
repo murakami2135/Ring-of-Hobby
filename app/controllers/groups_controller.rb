@@ -1,15 +1,18 @@
+# frozen_string_literal: true
+
 class GroupsController < ApplicationController
+  before_action :move_to_signed_in, except: []
 
   def index
-    @groups = Group.all
+    @groups = Group.page(params[:page]).reverse_order
     @group_joining = GroupUser.where(user_id: current_user.id)
-    @group_lists_none = "グループに参加していません。"
+    @group_lists_none = 'グループに参加していません。'
   end
 
   def search
     @groups = Group.search(params[:keyword])
     @keyword = params[:keyword]
-    render "index"
+    render 'index'
   end
 
   def new
@@ -49,13 +52,13 @@ class GroupsController < ApplicationController
   def destroy
     @groups = Group.all
     @group = Group.find(params[:id])
-    a = @group.group_users.find_by(user_id:current_user.id)
+    a = @group.group_users.find_by(user_id: current_user.id)
     a.destroy
   end
 
   def join
     @group = Group.find_by(id: params[:id])
-    if !@group.users.include?(current_user)
+    unless @group.users.include?(current_user)
       @group.users << current_user
       redirect_to groups_path
     end
@@ -64,7 +67,7 @@ class GroupsController < ApplicationController
   def participant
     @groups = Group.all
     @group_participant = GroupUser.where(user_id: current_user.id)
-    @group_lists_none = "グループに参加していません。"
+    @group_lists_none = 'グループに参加していません。'
   end
 
   private
@@ -76,5 +79,4 @@ class GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :overview, :image)
   end
-
 end

@@ -1,5 +1,14 @@
+# frozen_string_literal: true
+
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  def move_to_signed_in
+    unless user_signed_in?
+      # サインインしていないユーザーはログインページが表示される
+      redirect_to '/users/sign_in'
+    end
+  end
 
   protected
 

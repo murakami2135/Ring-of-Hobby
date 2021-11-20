@@ -1,6 +1,16 @@
-<h2>新規通知</h2>
-<% @notifications.each do |notification| %>
-  <%= link_to chat_path(notification.group.id) do %>
-    <%= "#{notification.group.name} に、新しいコメントがあります！！" %>
-  <% end %>
-<% end %>
+<div class="contaner">
+  <div class="row">
+    <div class="col-sm-5 text-right mt-5">
+      <h2>新規通知</h2>
+    </div>
+  </div>
+  <div class="row justify-content-center align-items-center" style="flex-direction: column">
+    <% @notifications.each do |notification| %>
+    <div>
+      <%= link_to chat_path(notification.group.id) do %>
+        <%= "#{notification.group.name} に、新しいコメントがあります！！" %>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+</div>

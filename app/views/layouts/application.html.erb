@@ -10,42 +10,61 @@
   </head>
 
   <body>
-    <ul class="nav pull-right nav-pills">
-      <% if user_signed_in? %>
-        <li>
-          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-        </li>
-        |
-        <li>
-          <%= link_to "グループ一覧", groups_path %>
-        </li>
-        |
-        <li>
-          <%= link_to "マイページ", current_user %>
-        </li>
-        |
-        <li>
-          <%= link_to "参加一覧", group_participant_path %>
-        </li>
-        |
-          <% if current_user.notifications.exists?(checked: false) %>
-          <li class="notification">
-           <%= link_to "通知", user_notifications_path(user_id: current_user.id) %>
-          </li>
-          <% else %>
-          <li>
-           <%= link_to "通知", user_notifications_path(user_id: current_user.id) %>
-          </li>
-          <% end %>
-      <% else %>
-        <li>
-          <%= link_to "新規登録", new_user_registration_path %>
-        </li>
-        <li>
-          <%= link_to "ログイン", new_user_session_path %>
-        </li>
-      <% end %>
-    </ul>
+    <header class="shadow-sm">
+      <nav class="navbar navbar-expand-lg navbar-light" style="justify-content: end">
+        <div class="contaner">
+            <ul class="navbar-nav ml-auto">
+              <% if user_signed_in? %>
+                <li class="mr-2 ml-2">
+                  <%= link_to groups_path do %>
+                   <button type="button" class="btn btn-danger">グループ一覧</button>
+                  <% end %>
+                </li>
+                <li class="mr-2 ml-2">
+                  <%= link_to current_user do %>
+                    <button type="button" class="btn btn-primary">マイページ</button>
+                  <% end %>
+                </li>
+                <li class="mr-2 ml-2">
+                  <%= link_to  group_participant_path do %>
+                    <button type="button" class="btn btn-success">参加一覧</button>
+                  <% end %>
+                </li>
+                  <% if current_user.notifications.exists?(checked: false) %>
+                  <li class="notification mr-2 ml-2">
+                    <%= link_to user_notifications_path(user_id: current_user.id) do %>
+                      <button type="button" class="btn btn-info">通知</button>
+                    <% end %>
+                  </li>
+                  <% else %>
+                  <li class="mr-2 ml-2">
+                    <%= link_to user_notifications_path(user_id: current_user.id) do %>
+                      <button type="button" class="btn btn-info">通知</button>
+                    <% end %>
+                  </li>
+                  <% end %>
+                <li class="mr-2 ml-2">
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <button type="button" class="btn btn-secondary">ログアウト</button>
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="mr-2 ml-2">
+                  <%= link_to new_user_registration_path do %>
+                    <button type="button" class="btn btn-primary">新規登録</button>
+                  <% end %>
+                </li>
+                <li class="mr-2 ml-2">
+                  <%= link_to new_user_session_path do %>
+                    <button type="button" class="btn btn-primary">ログイン</button>
+                  <% end %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
     <%= yield %>
   </body>
 </html>
