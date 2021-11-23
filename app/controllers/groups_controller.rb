@@ -10,7 +10,7 @@ class GroupsController < ApplicationController
   end
 
   def search
-    @groups = Group.search(params[:keyword])
+    @groups = Group.search(params[:keyword]).page(params[:page]).reverse_order
     @keyword = params[:keyword]
     render 'index'
   end
